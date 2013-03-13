@@ -12,7 +12,7 @@ class ScriptBuilder {
 		static boolean overwrite = false;
 		static int index = 0;
 		public static void main(String []args){
-			Scanner input = new Scanner( System.in ); 
+			Scanner input = new Scanner( System.in );
 			System.out.println( "Specify the compression factor between 0 and 100. A small factor produces smaller file with lower quality. Best quality is achieved using a value of 100. The default is 75.\n\nInput must be an integer between 0 and 100: " );
 			quality = input.nextInt();
 			System.out.println("Lossless compression? (y/n)");
@@ -37,7 +37,7 @@ class ScriptBuilder {
 		 * Events: 3-24
 		 */
 		static void getFiles(String location) throws IOException{
-			
+
 		 File f = new File(location);
 
 		    FilenameFilter textFilter = new FilenameFilter() {
@@ -61,7 +61,7 @@ class ScriptBuilder {
 		        }
 		    }
 
-		    writeToFile(output,"./","curlscript");
+		    writeToFile(output,"./","curlscript.bat");
 		}
 		static void checkFile(File file) throws FileNotFoundException{
 			String name = file.getName();
@@ -76,13 +76,13 @@ class ScriptBuilder {
 			if (lossless){
 				losslessString = "-lossless ";
 			}
-			
-			String script = directory+"/cwebp "+losslessString+"input/"+name+".jpg -q 80 -o output/"+name+".webp";
+
+			String script = "cwebp \"input\\"+name+".jpg\" "+losslessString+"-q "+quality+" -o \"output\\"+name+".webp\"";
 			output=output+script+"\n";
 			}
 			index++;
 		}
-		
+
 		public static void writeToFile(String data, String folder,String file) throws IOException {
 	        FileWriter fstream = null;
 
