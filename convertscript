@@ -1,4 +1,0 @@
-javac ScriptBuilder.java
-java ScriptBuilder
-chmod 755 curlscript
-./curlscript
